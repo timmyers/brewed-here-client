@@ -50,7 +50,9 @@ class Map extends React.Component<MapProps, MapState> {
   }
 
   componentWillUnmount() {
-    this.map.remove();
+    if (this.map) {
+      this.map.remove();
+    }
   }
 
   render() {
