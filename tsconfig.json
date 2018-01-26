@@ -9,7 +9,8 @@
     "lib": ["dom", "es2015", "es2017"],
     "baseUrl": ".",
     "paths": {
-      "Components/*": ["src/components/*"]
+      "Components/*": ["src/components/*"],
+      "Images/*": ["src/images/*"]
     }
   },
   "include": [

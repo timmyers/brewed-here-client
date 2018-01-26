@@ -1,33 +1,51 @@
 import * as React from 'react'
-import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 import styled from 'styled-components';
 import HorizontalLayout from 'Components/HorizontalLayout';
+import Link from 'Components/Link';
+import { BeerMapMarker } from 'Components/Icons';
+import { Brown, Gray } from 'Components/Colors';
 
 // Global styles
-import './index.css'
+// import './index.css'
+import './normalize.css'
 
-const Holder = styled(HorizontalLayout)`
-  height: 100px;
+const HeaderHolder = styled(HorizontalLayout)`
+  // height: 60px;
+  height: 8vh;
   background: #F9FAF7;
   align-items: center;
   justify-content: flex-start;
 `;
 
+const FullDiv = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+const Title = styled.h1`
+  font-size: 4vh;
+  color: ${Brown};
+  margin: 0px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+`;
+
+const HeaderIcon = styled(BeerMapMarker)`
+  margin: 0px 10px;
+  width: 5vh;
+  height: 5vh;
+`;
+
 const Header = () => (
-  <Holder>
-    <h1 style={{ margin: 0 }}>
-      <Link
-        to="/"
-        style={{
-          color: 'gray',
-          textDecoration: 'none',
-        }}
-      >
-        Gatsby
+  <HeaderHolder>
+    <HeaderIcon alt="logo" />
+    <Title>
+      <Link to="/">
+        Brewed Here
       </Link>
-    </h1>
-  </Holder>
+    </Title>
+  </HeaderHolder>
 )
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
@@ -40,7 +58,7 @@ interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
 class DefaultLayout extends React.PureComponent<DefaultLayoutProps, void> {
   public render() {
     return (
-      <div>
+      <FullDiv>
         <Helmet
           title="Brewed Here - Visit Colorado Breweries"
           meta={[
@@ -49,17 +67,10 @@ class DefaultLayout extends React.PureComponent<DefaultLayoutProps, void> {
           ]}
         />
         <Header />
-        <div
-          style={{
-            margin: '0 auto',
-            maxWidth: 960,
-            padding: '0px 1.0875rem 1.45rem',
-            paddingTop: 0,
-          }}
-        >
+        <FullDiv>
           {this.props.children()}
-        </div>
-      </div>
+        </FullDiv>
+      </FullDiv>
     )
   }
 }

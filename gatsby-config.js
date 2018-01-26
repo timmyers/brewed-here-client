@@ -7,5 +7,14 @@ module.exports = {
     // Add typescript stack into webpack
     `gatsby-plugin-typescript`,
     `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Montserrat\:400,800`,
+        ]
+      }
+    }
+
   ],
 }

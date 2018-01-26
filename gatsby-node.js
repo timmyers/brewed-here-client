@@ -5,6 +5,7 @@ exports.modifyWebpackConfig = function ({ config, env }) {
     resolve: {
       alias: {
         Components: path.resolve(__dirname, 'src/components/'),
+        Images: path.resolve(__dirname, 'src/images/'),
       }
     }
   });
