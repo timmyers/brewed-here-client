@@ -14,7 +14,7 @@ module.exports = {
           `Montserrat\:400,800`,
         ]
       }
-    }
-
+    },
+    { resolve: 'brewed-here-mongo' },
   ],
 }

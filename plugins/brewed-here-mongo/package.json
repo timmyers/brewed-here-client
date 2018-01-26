@@ -1,0 +1,6 @@
+{
+  "name": "brewed-here-mongo",
+  "dependencies": {
+    "mongodb": "^3.0.1"
+  }
+}
