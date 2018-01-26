@@ -7,9 +7,7 @@ const url = process.env.DB_URL;
 exports.sourceNodes = async ({ boundActionCreators }) => {
   const { createNode } = boundActionCreators;
 
-  console.log('connecting to db');
   const client = await MongoClient.connect(url);
-  console.log('connected to db');
   const db = client.db('brewmap');
 
   const breweriesDB = db.collection('Brewery');
