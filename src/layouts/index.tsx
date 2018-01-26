@@ -1,17 +1,16 @@
-import * as React from 'react'
-import Helmet from 'react-helmet'
+import * as React from 'react';
+import Helmet from 'react-helmet';
 import styled from 'styled-components';
-import HorizontalLayout from 'Components/HorizontalLayout';
 import Link from 'Components/Link';
+import HorizontalLayout from 'Components/HorizontalLayout';
 import { BeerMapMarker } from 'Components/Icons';
 import { Brown, Gray } from 'Components/Colors';
 
 // Global styles
 // import './index.css'
-import './normalize.css'
+import './normalize.css';
 
 const HeaderHolder = styled(HorizontalLayout)`
-  // height: 60px;
   height: 8vh;
   background: #F9FAF7;
   align-items: center;

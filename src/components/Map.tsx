@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import styled from 'styled-components';
-import * as mapboxgl from 'mapbox-gl';
+import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 // import { observer } from 'mobx-react';
 import HorizontalLayout from 'Components/HorizontalLayout';
@@ -53,6 +53,9 @@ class Map extends React.Component<{}, MapState> {
   }
 
   render() {
+    // necessary so that gatsby build will work properly
+    if (typeof window === `undefined`) { return null; }
+
     const { ready } = this.state;
 
     const style = {

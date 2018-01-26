@@ -3391,9 +3391,9 @@ gatsby-plugin-styled-components@^2.0.5:
   dependencies:
     babel-runtime "^6.26.0"
 
-gatsby-plugin-typescript@^1.4.10:
-  version "1.4.13"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-typescript/-/gatsby-plugin-typescript-1.4.13.tgz#4d15b93f752955c02b09759a2eaeb304d64e798d"
+gatsby-plugin-typescript@^1.4.15:
+  version "1.4.15"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-typescript/-/gatsby-plugin-typescript-1.4.15.tgz#7b5f3768d43178170126589306992c167782baeb"
   dependencies:
     babel-runtime "^6.26.0"
     ts-loader "^2.0.3"
