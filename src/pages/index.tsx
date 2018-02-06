@@ -20,9 +20,14 @@ interface IndexPageProps {
   }
 }
 
+const LeftSide = styled(VerticalLayout) `
+  height: 100%;
+  flex-grow: 1;
+`;
+
 const RightSide = styled(VerticalLayout) `
   height: 100%;
-  width: 400px;
+  width: 300px;
   justify-content: flex-start;
   background-color: #f8f8f8;
 `;
@@ -38,16 +43,18 @@ export default ({ data }: IndexPageProps) => {
 
   return (
     <HorizontalLayout full>
-      <Map>
-        { breweries.map((brewery) =>
-          <MapMarker 
-            key = { brewery.id }
-            lat = { brewery.lat }
-            lng = { brewery.lng }
-            breweryId = { brewery.id }
-          />
-        )}
-      </Map>
+      <LeftSide>
+        <Map>
+          { breweries.map((brewery) =>
+            <MapMarker 
+              key = { brewery.id }
+              lat = { brewery.lat }
+              lng = { brewery.lng }
+              breweryId = { brewery.id }
+            />
+          )}
+        </Map>
+      </LeftSide>
       <RightSide key={'rhs'}>
         <ListHolder>
           <BreweryList breweries={breweries} />
