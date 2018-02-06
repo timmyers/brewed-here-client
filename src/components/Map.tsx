@@ -36,13 +36,13 @@ class Map extends React.Component<MapProps, MapState> {
   }
 
   componentDidMount() {
-    // this.map = new mapboxgl.Map({
-    //   container: this.mapContainer,
-    //   style: 'mapbox://styles/mapbox/streets-v10',
-    //   center: [-104.990482, 39.710206],
-    //   zoom: 10,
-    // });  
-    // this.setState({ ready: true });
+    this.map = new mapboxgl.Map({
+      container: this.mapContainer,
+      style: 'mapbox://styles/mapbox/streets-v10',
+      center: [-104.990482, 39.710206],
+      zoom: 10,
+    });  
+    this.setState({ ready: true });
   }
 
   componentDidUpdate() {
