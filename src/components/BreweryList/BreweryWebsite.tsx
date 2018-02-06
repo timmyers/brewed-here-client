@@ -15,7 +15,7 @@ const Link = styled.a`
 const VisitSpan = styled.span`
   font-size: 14px;
   color: #9B9B9B;
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
 `;
 
 const WebIcon = styled(Web as any)`

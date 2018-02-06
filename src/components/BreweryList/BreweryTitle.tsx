@@ -8,8 +8,8 @@ const TitleHolder = styled(HorizontalLayout)`
 `;
 
 const TitleSpan = styled.span`
-  font-size: 16px;
-  font-family: sans-serif;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
 `;
 
 interface Props {

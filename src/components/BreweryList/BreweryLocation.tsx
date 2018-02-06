@@ -11,9 +11,9 @@ const TitleHolder = styled(HorizontalLayout)`
 `;
 
 const TitleSpan = styled.span`
-  font-size: 14px;
+  font-size: 12px;
   color: #9B9B9B;
-  font-family: sans-serif;
+  font-family: 'Montserrat', sans-serif;
 `;
 
 const PlaceIcon = styled(Place as any)`
