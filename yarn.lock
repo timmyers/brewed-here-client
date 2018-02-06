@@ -3379,9 +3379,9 @@ function-bind@^1.0.2:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
 
-fuzzy-search@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/fuzzy-search/-/fuzzy-search-2.0.1.tgz#f96c34434d7a41543c257842ac60d62bcbcac934"
+fuse.js@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/fuse.js/-/fuse.js-3.2.0.tgz#f0448e8069855bf2a3e683cdc1d320e7e2a07ef4"
 
 gatsby-1-config-css-modules@^1.0.8:
   version "1.0.8"

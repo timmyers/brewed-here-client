@@ -7,7 +7,7 @@
     "@types/node": "^8.0.7",
     "@types/react": "16.0.35",
     "@types/react-dom": "0.14.23",
-    "fuzzy-search": "^2.0.1",
+    "fuse.js": "^3.2.0",
     "gatsby": "^1.9.169",
     "gatsby-link": "^1.6.28",
     "gatsby-plugin-google-fonts": "^0.0.3",

@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import { InteractionStore } from 'Stores/InteractionStore';
 
 const Holder = styled.div`
-  padding: '10px';
+  padding: 10px;
   background-color: #eee;
 `;
 

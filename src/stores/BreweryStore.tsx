@@ -1,5 +1,5 @@
 import { observable, computed, toJS } from 'mobx';
-import * as FuzzySearch from 'fuzzy-search';
+import * as Fuse from 'fuse.js';
 // import { MapStore } from 'State/Map';
 import { InteractionStore } from 'Stores/InteractionStore';
 
@@ -15,7 +15,19 @@ export class BreweryState {
   @observable breweries: Brewery[] = [];
 
   @computed get sortedBreweries() {
-    return this.breweries.sort((a: Brewery, b: Brewery) => a.name.localeCompare(b.name));
+    const result = this.breweries.sort((a: Brewery, b: Brewery) => a.name.localeCompare(b.name));
+
+    if (result.length) {
+      this.searcher = new Fuse(
+        result,
+        {
+          threshold: .2,
+          keys: ['name']
+        }
+      );
+    }
+
+    return result;
   }
 
   @computed get breweriesMatchingSearch() {
@@ -24,13 +36,9 @@ export class BreweryState {
       return [];
     }
 
-    const searcher = new FuzzySearch(
-      this.sortedBreweries,
-      ['name'],
-      {},
-    );
-
-    const result = searcher.search(InteractionStore.brewerySearchString);
+    const start = performance.now()
+    const result = this.searcher.search(InteractionStore.brewerySearchString);
+    console.log('search took', performance.now() - start)
     return result;
   }
 

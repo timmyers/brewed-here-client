@@ -48,13 +48,21 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
   }
 
   render() {
+    console.log('rendering');
     const { data, BreweryStore } = this.props;
 
     let breweries;
     let filteredBreweries;
+
+    // See if anything matched
     if (BreweryStore.breweriesMatchingSearch.length) {
       breweries = BreweryStore.sortedBreweries;
       filteredBreweries = BreweryStore.breweriesMatchingSearch;
+    // Otherwise all breweries
+    } else if (BreweryStore.sortedBreweries.length) {
+      breweries = BreweryStore.sortedBreweries;
+      filteredBreweries = breweries;
+    // Static data
     } else {
       breweries = sortBreweriesByName(data.mongo.breweries);
       filteredBreweries = breweries;
@@ -66,10 +74,10 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
           <Map>
             { breweries.map((brewery) =>
               <MapMarker 
-                key = { brewery.id }
-                lat = { brewery.lat }
-                lng = { brewery.lng }
-                breweryId = { brewery.id }
+                key={brewery.id}
+                lat={brewery.lat}
+                lng={brewery.lng}
+                breweryId={ brewery.id}
               />
             )}
           </Map>
