@@ -38,7 +38,6 @@ class MapMarker extends React.Component<MapMarkerProps, {}> {
     }
 
     setMarkerContainer(el: HTMLElement) {
-        console.log(el, this.context.map);
         if (el === null) return;
 
         this.markerContainer = el;

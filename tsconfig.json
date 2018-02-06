@@ -7,9 +7,12 @@
     "target": "esnext",
     "jsx": "react",
     "lib": ["dom", "es2015", "es2017"],
+    "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
       "Components/*": ["src/components/*"],
+      "Utils/*": ["src/utils/*"],
+      "Stores/*": ["src/stores/*"],
       "Images/*": ["src/images/*"]
     }
   },
