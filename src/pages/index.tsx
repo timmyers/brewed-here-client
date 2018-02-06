@@ -51,22 +51,22 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
     console.log('rendering');
     const { data, BreweryStore } = this.props;
 
-    let breweries;
-    let filteredBreweries;
+    let breweries = [];
+    let filteredBreweries = [];
 
     // See if anything matched
-    if (BreweryStore.breweriesMatchingSearch.length) {
-      breweries = BreweryStore.sortedBreweries;
-      filteredBreweries = BreweryStore.breweriesMatchingSearch;
-    // Otherwise all breweries
-    } else if (BreweryStore.sortedBreweries.length) {
-      breweries = BreweryStore.sortedBreweries;
-      filteredBreweries = breweries;
-    // Static data
-    } else {
-      breweries = sortBreweriesByName(data.mongo.breweries);
-      filteredBreweries = breweries;
-    }
+    // if (BreweryStore.breweriesMatchingSearch.length) {
+    //   breweries = BreweryStore.sortedBreweries;
+    //   filteredBreweries = BreweryStore.breweriesMatchingSearch;
+    // // Otherwise all breweries
+    // } else if (BreweryStore.sortedBreweries.length) {
+    //   breweries = BreweryStore.sortedBreweries;
+    //   filteredBreweries = breweries;
+    // // Static data
+    // } else {
+    //   breweries = sortBreweriesByName(data.mongo.breweries);
+    //   filteredBreweries = breweries;
+    // }
 
     return (
       <HorizontalLayout full>

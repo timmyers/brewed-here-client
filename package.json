@@ -12,7 +12,6 @@
     "gatsby-link": "^1.6.28",
     "gatsby-plugin-google-fonts": "^0.0.3",
     "gatsby-plugin-react-helmet": "^1.0.8",
-    "gatsby-plugin-styled-components": "^2.0.5",
     "gatsby-plugin-typescript": "^1.4.15",
     "gatsby-source-mongodb": "^1.5.13",
     "mapbox-gl": "^0.44.0",
