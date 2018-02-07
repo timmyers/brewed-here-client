@@ -48,7 +48,6 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
   }
 
   render() {
-    console.log('rendering');
     const { data, BreweryStore } = this.props;
 
     let breweries = [];
