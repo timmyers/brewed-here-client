@@ -31,7 +31,7 @@ class DefaultLayout extends React.PureComponent<DefaultLayoutProps, void> {
             { name: 'keywords', content: 'colorado, brewery, tracker, map, list, search' },
           ]}
         />
-        <AuthComponent />
+        { typeof window !== `undefined` && <AuthComponent /> }
         <Header />
         <FullDiv>
           {this.props.children()}

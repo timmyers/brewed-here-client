@@ -2,7 +2,6 @@ const path = require('path');
 
 exports.modifyWebpackConfig = function ({ config, stage }) {
   config.merge({
-    target: 'web',
     resolve: {
       alias: {
         Components: path.resolve(__dirname, 'src/components/'),
