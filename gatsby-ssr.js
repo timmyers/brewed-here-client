@@ -7,6 +7,7 @@ import preset from 'jss-preset-default';
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 import { BreweryStore } from 'Stores/BreweryStore';
+import { AuthStore } from 'Stores/AuthStore';
 
 exports.replaceRenderer = ({
   bodyComponent,
@@ -24,7 +25,7 @@ exports.replaceRenderer = ({
   const app = (
     <JssProvider registry={sheets} jss={jss}>
       <StyleSheetManager sheet={sheet.instance}>
-        <Provider BreweryStore={BreweryStore}>
+        <Provider BreweryStore={BreweryStore} AuthStore={AuthStore}>
           {bodyComponent}
         </Provider>
       </StyleSheetManager>
