@@ -4,7 +4,7 @@ import { LoginComponent } from 'Utils/Auth';
 export default class LoginPage extends React.Component<{}, {}> {
   render() {
     return (
-      <LoginComponent />
+      typeof window !== `undefined` ? <LoginComponent /> : null
     );
   }
 };
