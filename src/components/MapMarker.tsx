@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
@@ -34,30 +35,22 @@ class MapMarker extends React.Component<MapMarkerProps, {}> {
   }
 
   componentWillUnmount() {
-    console.log('marker unmounting :(');
-    this.marker.remove();
+    if (this.marker) {
+      this.marker.remove();
+    }
   }
 
-  setMarkerContainer(el: HTMLElement) {
-    if (el === null) return;
+  componentDidMount() {
+    this.markerContainer = document.createElement('div');
+    ReactDOM.render(<CustomMarker />, this.markerContainer);
+    // console.log(this.markerContainer);
 
-    this.markerContainer = el;
     this.marker = new mapboxgl.Marker(this.markerContainer)
       .setLngLat([this.props.lng, this.props.lat])
       .addTo(this.context.map);
   }
 
-  render() {
-    return (
-      <div
-        ref={(el: HTMLElement) => this.setMarkerContainer(el)}
-      >
-        {
-          <CustomMarker />
-        }
-      </div>
-    );
-  }
+  render() { return null; }
 }
 
 export default MapMarker;

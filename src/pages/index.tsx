@@ -40,8 +40,16 @@ const ListHolder = styled.div`
 @inject('BreweryStore')
 @observer
 export default class IndexPage extends React.Component<IndexPageProps, {}> {
+  componentDidMount() {
+    if (typeof window === 'undefined') return;
+
+    const { data, BreweryStore } = this.props;
+    BreweryStore.breweries = data.mongo.breweries;
+  }
+
   render() {
     const { data, BreweryStore } = this.props;
+    console.log(BreweryStore.breweries)
 
     let breweries = [];
     let filteredBreweries = [];
@@ -55,12 +63,6 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
       console.log('using dynamic data');
       breweries = BreweryStore.sortedBreweries;
       filteredBreweries = breweries;
-    // Static data
-    } else {
-      console.log('using static data');
-      // breweries = sortBreweriesByName(data.mongo.breweries);
-      breweries = [];
-      filteredBreweries = breweries;
     }
 
     return (
@@ -72,7 +74,7 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
                 key={brewery.id}
                 lat={brewery.lat}
                 lng={brewery.lng}
-                breweryId={ brewery.id}
+                breweryId={brewery.id}
               />
             )}
           </Map>
