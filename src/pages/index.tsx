@@ -63,6 +63,9 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
       console.log('using dynamic data');
       breweries = BreweryStore.sortedBreweries;
       filteredBreweries = breweries;
+    } else {
+      breweries = data.mongo.breweries;
+      filteredBreweries = breweries;
     }
 
     return (
