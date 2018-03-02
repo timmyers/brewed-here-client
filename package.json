@@ -7,6 +7,8 @@
     "@types/node": "^8.0.7",
     "@types/react": "16.0.35",
     "@types/react-dom": "0.14.23",
+    "apollo-client-preset": "^1.0.8",
+    "apollo-link-context": "^1.0.7",
     "auth0-js": "^9.2.1",
     "fuse.js": "^3.2.0",
     "gatsby": "^1.9.169",
@@ -16,13 +18,14 @@
     "gatsby-plugin-react-helmet": "^1.0.8",
     "gatsby-plugin-typescript": "^1.4.15",
     "gatsby-source-mongodb": "^1.5.13",
-    "graphql-tag": "^2.7.0",
+    "graphql-tag": "^2.8.0",
     "mapbox-gl": "^0.44.0",
     "material-ui": "^1.0.0-beta.30",
     "material-ui-icons": "^1.0.0-beta.17",
     "mobx": "^3.5.1",
     "mobx-react": "^4.4.1",
     "prop-types": "^15.6.0",
+    "react-apollo": "^2.0.4",
     "styled-components": "^3.0.2"
   },
   "keywords": [
@@ -40,7 +43,7 @@
     "start": {
       "command": "gatsby develop",
       "env": {
-        "API_URL": "http://localhost:8080",
+        "GATSBY_API_URL": "http://localhost:8080",
         "GATSBY_AUTH0_DOMAIN": "brewmap-dev.auth0.com",
         "GATSBY_AUTH0_REDIRECT_URI": "http://localhost:8000/login",
         "GATSBY_AUTH0_CLIENT_ID": "ChJgeELQMf3c2eoJ2Gx1ZE7Igjf8nocA",

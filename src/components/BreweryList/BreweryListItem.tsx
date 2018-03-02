@@ -1,7 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { inject, observer } from 'mobx-react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag'
 import HorizontalLayout from 'Components/HorizontalLayout';
 import VerticalLayout from 'Components/VerticalLayout';
+import { AuthState } from 'Stores/AuthStore';
 import BreweryTitle from './BreweryTitle';
 import BreweryLocation from './BreweryLocation';
 import BreweryVisited from './BreweryVisited';
@@ -11,8 +15,8 @@ import BreweryPermanentlyClosed from './BreweryPermanentlyClosed';
 interface ItemProps {
   brewery: any;
   mutate: any;
-  showCheckbox: boolean;
   hovered: boolean;
+  AuthStore: AuthState;
 }
 
 const Outer = styled.div`
@@ -47,6 +51,8 @@ const Row = styled(HorizontalLayout)`
   justify-content: flex-start;
 `;
 
+@inject('AuthStore')
+@observer
 class Item extends React.Component<ItemProps, {}> {
   shouldComponentUpdate(newProps: ItemProps) {
     if (newProps.brewery.visited !== this.props.brewery.visited) return true;
@@ -54,7 +60,7 @@ class Item extends React.Component<ItemProps, {}> {
     return false;
   }
   render() {
-    const { brewery, mutate, showCheckbox, hovered } = this.props;
+    const { brewery, mutate, hovered, AuthStore } = this.props;
 
     const OuterUsed = Outer;
 
@@ -75,10 +81,11 @@ class Item extends React.Component<ItemProps, {}> {
             </Row>
           }
           <Row>
-            { showCheckbox &&
+            { AuthStore.loggedIn && 
               <BreweryVisited
-                visited={brewery.visited}
+                visited={brewery.visited === undefined ? false : brewery.visited}
                 onChange={(checked: any) => {
+                  console.log('mutate', checked);
                   mutate({
                     variables: {
                       brewery: brewery.id,
@@ -96,4 +103,12 @@ class Item extends React.Component<ItemProps, {}> {
   }
 }
 
-export default Item;
+const ItemQL = graphql(gql`
+  mutation setVisited($brewery: String!, $visited: Boolean!) {
+    setVisited(brewery: $brewery, visited: $visited) {
+      id, visited
+    }
+  }
+`)(Item);
+
+export default ItemQL;

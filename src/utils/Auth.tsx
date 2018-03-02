@@ -3,7 +3,6 @@ import * as PropTypes from 'prop-types';
 import * as auth0 from 'auth0-js';
 import { Route } from 'react-router-dom';
 import { History } from 'history';
-import gql from 'graphql-tag';
 import { navigateTo } from 'gatsby-link';
 import { AuthStore } from 'Stores/AuthStore';
 
@@ -26,17 +25,6 @@ class Auth {
         this.setSession(authResult);
         AuthStore.loggedIn = true;
         navigateTo('/');
-        // console.log('refreshing query');
-        // client.query({
-        //   query: gql`
-        //     query {
-        //       allBreweries {
-        //         id, visited
-        //       }
-        //     }
-        //   `,
-        //   fetchPolicy: 'network-only',
-        // });
         this.getProfile();
       } else if (err) {
         navigateTo('/');

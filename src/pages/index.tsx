@@ -40,13 +40,6 @@ const ListHolder = styled.div`
 @inject('BreweryStore')
 @observer
 export default class IndexPage extends React.Component<IndexPageProps, {}> {
-  componentDidMount() {
-    if (typeof window === 'undefined') return;
-
-    const { data, BreweryStore } = this.props;
-    BreweryStore.breweries = data.mongo.breweries;
-  }
-
   render() {
     const { data, BreweryStore } = this.props;
 
@@ -59,11 +52,14 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
       filteredBreweries = BreweryStore.breweriesMatchingSearch;
     // Otherwise all breweries
     } else if (BreweryStore.sortedBreweries.length) {
+      console.log('using dynamic data');
       breweries = BreweryStore.sortedBreweries;
       filteredBreweries = breweries;
     // Static data
     } else {
-      breweries = sortBreweriesByName(data.mongo.breweries);
+      console.log('using static data');
+      // breweries = sortBreweriesByName(data.mongo.breweries);
+      breweries = [];
       filteredBreweries = breweries;
     }
 

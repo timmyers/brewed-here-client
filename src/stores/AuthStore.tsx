@@ -1,4 +1,5 @@
-import { observable } from 'mobx';
+import { observable, autorun } from 'mobx';
+import gql from 'graphql-tag';
 
 export class AuthState {
   constructor() {
