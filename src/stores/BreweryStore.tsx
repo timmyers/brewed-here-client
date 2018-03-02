@@ -17,7 +17,7 @@ export class BreweryState {
   @observable breweries: Brewery[] = [];
 
   @computed get sortedBreweries() {
-    console.log('num breweries', this.breweries.length, performance.now());
+    // console.log('num breweries', this.breweries.length, performance.now());
     const result = this.breweries.sort((a: Brewery, b: Brewery) => a.name.localeCompare(b.name));
 
     if (result.length) {
