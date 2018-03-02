@@ -69,7 +69,7 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
       <HorizontalLayout full>
         <LeftSide>
           <Map>
-            { breweries.map((brewery) =>
+            { filteredBreweries.map((brewery) =>
               <MapMarker 
                 key={brewery.id}
                 lat={brewery.lat}
