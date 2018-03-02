@@ -64,7 +64,7 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
       breweries = BreweryStore.sortedBreweries;
       filteredBreweries = breweries;
     } else {
-      breweries = data.mongo.breweries;
+      breweries = sortBreweriesByName(data.mongo.breweries);
       filteredBreweries = breweries;
     }
 
