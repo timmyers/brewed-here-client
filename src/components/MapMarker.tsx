@@ -3,9 +3,17 @@ import * as ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
-import { BeerMapMarker } from 'Components/Icons';
+import { BeerMapMarker, BeerMapMarkerVisited } from 'Components/Icons';
 
-const CustomMarker: any = styled(BeerMapMarker) `
+const CustomMarker: any = styled(BeerMapMarker)`
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: -20px;
+  top: -20px;
+`;
+
+const CustomMarkerVisited: any = styled(BeerMapMarkerVisited)`
   width: 40px;
   height: 40px;
   position: absolute;
@@ -29,6 +37,11 @@ class MapMarker extends React.Component<MapMarkerProps, {}> {
     map: PropTypes.object,
   };
 
+  manualRender() {
+    const marker = this.props.visited ? <CustomMarkerVisited /> : <CustomMarker />
+    ReactDOM.render(marker, this.markerContainer);
+  }
+
   shouldComponentUpdate(nextProps: MapMarkerProps) {
     return nextProps.visited !== this.props.visited ||
       nextProps.hovered !== this.props.hovered;
@@ -42,12 +55,15 @@ class MapMarker extends React.Component<MapMarkerProps, {}> {
 
   componentDidMount() {
     this.markerContainer = document.createElement('div');
-    ReactDOM.render(<CustomMarker />, this.markerContainer);
-    // console.log(this.markerContainer);
+    this.manualRender();
 
     this.marker = new mapboxgl.Marker(this.markerContainer)
       .setLngLat([this.props.lng, this.props.lat])
       .addTo(this.context.map);
+  }
+
+  componentDidUpdate() {
+    this.manualRender();
   }
 
   render() { return null; }

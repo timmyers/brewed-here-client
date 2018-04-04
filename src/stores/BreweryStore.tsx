@@ -72,7 +72,7 @@ if (typeof window !== 'undefined') {
 
   observableQuery.subscribe({
     next: ({ data }: { data: any }) => {
-      console.log('gotbreweries', data.allBreweries, performance.now());
+      // console.log('gotbreweries', data.allBreweries, performance.now());
       BreweryStore.breweries = data.allBreweries;
     },
   });
