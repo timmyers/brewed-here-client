@@ -50,28 +50,27 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
   render() {
     const { data, BreweryStore } = this.props;
 
-    let breweries = [];
-    let filteredBreweries = [];
+    let listBreweries = [];
+    let mapBreweries = [];
 
     // See if anything matched
     if (BreweryStore.breweriesMatchingSearch.length) {
-      breweries = BreweryStore.sortedBreweries;
-      filteredBreweries = BreweryStore.breweriesMatchingSearch;
+      listBreweries = BreweryStore.breweriesMatchingSearch;
+      mapBreweries = listBreweries;
     // Otherwise all breweries
     } else if (BreweryStore.sortedBreweries.length) {
-      console.log('using dynamic data');
-      breweries = BreweryStore.sortedBreweries;
-      filteredBreweries = breweries;
+      listBreweries = BreweryStore.breweriesInView;
+      mapBreweries = BreweryStore.sortedBreweries;
     } else {
-      breweries = sortBreweriesByName(data.mongo.breweries);
-      filteredBreweries = breweries;
+      listBreweries = sortBreweriesByName(data.mongo.breweries);
+      mapBreweries = listBreweries;
     }
 
     return (
       <HorizontalLayout full>
         <LeftSide>
           <Map>
-            { filteredBreweries.map((brewery) =>
+            { mapBreweries.map((brewery) =>
               <MapMarker 
                 key={brewery.id}
                 lat={brewery.lat}
@@ -84,7 +83,7 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
         <RightSide key={'rhs'}>
           <BrewerySearch />
           <ListHolder>
-            <BreweryList breweries={filteredBreweries} />
+            <BreweryList breweries={listBreweries} />
           </ListHolder>
         </RightSide>
       </HorizontalLayout>

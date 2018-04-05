@@ -3,6 +3,7 @@ import * as PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { MapStore } from 'Stores/MapStore';
 
 const mapboxglAny = mapboxgl as any;
 
@@ -42,11 +43,31 @@ class Map extends React.Component<MapProps, MapState> {
       center: [-104.990482, 39.710206],
       zoom: 10,
     });  
+
     this.setState({ ready: true });
+
+    this.map.on('load', () => {
+      const bounds = this.map.getBounds();
+      MapStore.viewbox = {
+        left: bounds.getWest(),
+        bottom: bounds.getSouth(),
+        right: bounds.getEast(),
+        top: bounds.getNorth(),
+      };
+    });
+    this.map.on('move', () => {
+      const bounds = this.map.getBounds();
+      MapStore.viewbox = {
+        left: bounds.getWest(),
+        bottom: bounds.getSouth(),
+        right: bounds.getEast(),
+        top: bounds.getNorth(),
+      };
+    });
   }
 
   componentDidUpdate() {
-    this.map.resize();
+    // this.map.resize();
   }
 
   componentWillUnmount() {

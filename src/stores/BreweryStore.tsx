@@ -2,6 +2,7 @@ import { observable, computed, autorun, toJS } from 'mobx';
 import gql from 'graphql-tag';
 import * as Fuse from 'fuse.js';
 import { AuthStore } from 'Stores/AuthStore';
+import { MapStore } from 'Stores/MapStore';
 import { client } from 'Utils/Apollo';
 import { InteractionStore } from 'Stores/InteractionStore';
 
@@ -30,6 +31,8 @@ export class BreweryState {
       );
     }
 
+    console.log('sorted breweries');
+
     return result;
   }
 
@@ -45,6 +48,18 @@ export class BreweryState {
     return result;
   }
 
+  @computed get breweriesInView() {
+    const breweries = this.sortedBreweries
+      .filter((brewery: any) => {
+        return brewery.lat < MapStore.viewbox.top &&
+          brewery.lat > MapStore.viewbox.bottom &&
+          brewery.lng < MapStore.viewbox.right &&
+          brewery.lng > MapStore.viewbox.left;
+      });
+
+    console.log('breweriesInView');
+    return breweries;
+  }
 }
 
 export const BreweryStore = new BreweryState();
