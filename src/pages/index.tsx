@@ -55,13 +55,16 @@ export default class IndexPage extends React.Component<IndexPageProps, {}> {
 
     // See if anything matched
     if (BreweryStore.breweriesMatchingSearch.length) {
+      console.log('breweries case A');
       listBreweries = BreweryStore.breweriesMatchingSearch;
       mapBreweries = listBreweries;
     // Otherwise all breweries
     } else if (BreweryStore.sortedBreweries.length) {
+      console.log('breweries case B');
       listBreweries = BreweryStore.breweriesInView;
       mapBreweries = BreweryStore.sortedBreweries;
     } else {
+      console.log('breweries case C');
       listBreweries = sortBreweriesByName(data.mongo.breweries);
       mapBreweries = listBreweries;
     }

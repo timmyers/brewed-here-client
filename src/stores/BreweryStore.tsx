@@ -1,4 +1,4 @@
-import { observable, computed, autorun, toJS } from 'mobx';
+import { observable, computed, autorun, toJS, runInAction } from 'mobx';
 import gql from 'graphql-tag';
 import * as Fuse from 'fuse.js';
 import { AuthStore } from 'Stores/AuthStore';
@@ -16,7 +16,6 @@ export interface Brewery {
 
 export class BreweryState {
   @observable breweries: Brewery[] = [];
-
   @computed get sortedBreweries() {
     // console.log('num breweries', this.breweries.length, performance.now());
     const result = this.breweries.sort((a: Brewery, b: Brewery) => a.name.localeCompare(b.name));
@@ -31,22 +30,9 @@ export class BreweryState {
       );
     }
 
-    console.log('sorted breweries');
-
     return result;
   }
-
-  @computed get breweriesMatchingSearch() {
-    if (!this.sortedBreweries.length ||
-      !InteractionStore.brewerySearchString.length) {
-      return [];
-    }
-
-    const start = performance.now()
-    const result = this.searcher.search(InteractionStore.brewerySearchString);
-    console.log('search took', performance.now() - start)
-    return result;
-  }
+  @observable breweriesMatchingSearch: Brewery[] = [];
 
   @computed get breweriesInView() {
     const breweries = this.sortedBreweries
@@ -57,12 +43,25 @@ export class BreweryState {
           brewery.lng > MapStore.viewbox.left;
       });
 
-    console.log('breweriesInView');
     return breweries;
   }
 }
 
 export const BreweryStore = new BreweryState();
+
+autorun(() => {
+    console.log('search');
+    if (!BreweryStore.sortedBreweries.length ||
+      !InteractionStore.brewerySearchString.length) {
+      return [];
+    }
+
+    const start = performance.now()
+    const result = BreweryStore.searcher.search(InteractionStore.brewerySearchString);
+    console.log('search took', performance.now() - start)
+
+    runInAction(() => BreweryStore.breweriesMatchingSearch = result);
+});
 
 if (typeof window !== 'undefined') {
   const query = gql`

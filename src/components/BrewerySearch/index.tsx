@@ -14,7 +14,7 @@ const BrewerySearch = () => (
       id="brewerySearch"
       label="Search for a brewery"
       fullWidth
-      onChange={e => InteractionStore.brewerySearchString = e.target.value}
+      onChange={e => InteractionStore.setBrewerySearchString(e.target.value)}
     />
   </Holder>
 );
